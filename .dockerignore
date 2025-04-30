@@ -1,0 +1,6 @@
+.venv/
+.gitignore
+.git/
+.pre-commit-config.yaml
+cz.toml
+.github/
