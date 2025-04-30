@@ -1,3 +1,10 @@
+## v0.0.3 (2025-04-30)
+
+### 💚👷 CI & Build
+
+- Another attempt to fix package name generation to include -base or -packge suffix
+- Fix names and tag version generation
+
 ## v0.0.2 (2025-04-30)
 
 ### 🔧🔨📦️ Configuration, Scripts, Packages
