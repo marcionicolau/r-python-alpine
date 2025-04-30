@@ -66,7 +66,10 @@ jobs:
           flavor: |
             latest=auto
           labels: |
-            org.opencontainers.image.created={{commit_date 'YYYYMMDD-HHmmss' tz='America/Sao_Paulo'}}
+            org.opencontainers.image.created={{commit_date 'YYYY-MM-DD HH:mm:ss' tz='America/Sao_Paulo'}}
+            org.opencontainers.image.description="Alpine Base Image with R 4.4.2 and Python 3.12"
+            org.opencontainers.image.licenses="MIT"
+            org.opencontainers.image.title="${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-base"
 
       # Build and push Docker image with Buildx (don't push on PR)
       # https://github.com/docker/build-push-action
@@ -147,9 +150,11 @@ jobs:
             type=semver,pattern={{version}}
           flavor: |
             latest=auto
-            suffix=-packages
           labels: |
-            org.opencontainers.image.created={{commit_date 'YYYYMMDD-HHmmss' tz='America/Sao_Paulo'}}
+            org.opencontainers.image.created={{commit_date 'YYYY-MM-DD HH:mm:ss' tz='America/Sao_Paulo'}}
+            org.opencontainers.image.description="Alpine Packages Image with R 4.4.2 and Python 3.12"
+            org.opencontainers.image.licenses="MIT"
+            org.opencontainers.image.title="${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-packages"
 
       # Build and push Docker image with Buildx (don't push on PR)
       # https://github.com/docker/build-push-action
