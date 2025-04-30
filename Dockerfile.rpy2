@@ -1,29 +1,20 @@
-FROM rhub/r-minimal:4.5 AS r-builder
+FROM ghcr.io/marcionicolau/r-python-alpine:0.0.1
 
 
-FROM python:3.12-alpine
-COPY --from=r-builder /usr/local/bin/installr /usr/local/bin/installr
+ARG VERSION=0.0.1
 
-SHELL [ "/bin/ash", "-c" ]
-RUN apk add --no-cache make gcc git libffi-dev py3-uv musl-dev R R-dev
-
+LABEL version=$VERSION
+LABEL org.opencontainers.image.authors="marcio.nicolau@embrapa.br"
+LABEL org.opencontainers.image.source="https://github.com/marcionicolau/r-python-alpine"
+LABEL description="Python 3.12 with R 4.2.2 and r-packages"
+LABEL repository="https://github.com/marcionicolau/r-python-alpine"
+LABEL tag="r-pathon-packages:$VERSION"
+# RUN apk add --no-cache make gcc git libffi-dev py3-uv musl-dev R R-dev
 
 WORKDIR /app
 
-RUN installr -d reticulate dplyr ggplot2 \
+RUN installr -t R-dev -d tidyverse \
     && rm -rf /tmp/downloaded_packages \
-    && uv venv \
-    && source .venv/bin/activate \
-    && uv pip install --no-cache-dir \
-    --upgrade \
-    pip \
-    setuptools \
-    wheel \
-    numpy \
-    pandas \
-    git+https://github.com/rpy2/rpy2.git \
-    && apk del --purge -r \
-    gcc git libffi-dev musl-dev R-dev \
     && rm -rf /var/cache/apk/* \
     && rm -rf /root/.cache
 
