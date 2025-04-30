@@ -1,3 +1,9 @@
+## v0.0.4 (2025-04-30)
+
+### 🐛🚑️ Fixes
+
+- Update package name generation
+
 ## v0.0.3 (2025-04-30)
 
 ### 💚👷 CI & Build
