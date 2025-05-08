@@ -1,3 +1,9 @@
+## v0.0.5 (2025-05-07)
+
+### 🐛🚑️ Fixes
+
+- Update the uv version from official binary docker and add R packages
+
 ## v0.0.4 (2025-04-30)
 
 ### 🐛🚑️ Fixes
