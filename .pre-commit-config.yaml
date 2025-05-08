@@ -5,7 +5,7 @@ repos:
       - id: conventional-gitmoji
 
   - repo: https://github.com/commitizen-tools/commitizen
-    rev: v4.6.0
+    rev: v4.6.3
     hooks:
       - id: commitizen
         stages: [commit-msg]
