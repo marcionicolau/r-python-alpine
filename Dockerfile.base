@@ -1,4 +1,4 @@
-FROM rhub/r-minimal:4.5 AS r-builder
+FROM rhub/r-minimal:4.6 AS r-builder
 
 
 FROM python:3.12-alpine
