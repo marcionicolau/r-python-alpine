@@ -1,3 +1,9 @@
+## v0.0.5 (2026-05-27)
+
+### 🧹 chore
+
+- Setup commitizen with cz-conventional-gitmoji
+
 ## v0.0.4 (2025-04-30)
 
 ### 🐛🚑️ Fixes
