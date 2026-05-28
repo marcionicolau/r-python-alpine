@@ -141,6 +141,20 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      # Wait for base image to be available in registry
+      - name: Wait for base image
+        run: |
+          for i in {1..30}; do
+            if docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-base:${{ github.ref_name }} 2>/dev/null; then
+              echo "Base image is available"
+              exit 0
+            fi
+            echo "Waiting for base image... attempt $i/30"
+            sleep 10
+          done
+          echo "Base image not available after 5 minutes"
+          exit 1
+
       # Extract metadata (tags, labels) for Docker
       # https://github.com/docker/metadata-action
       - name: Extract Docker metadata
