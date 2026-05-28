@@ -1,11 +1,18 @@
-FROM rhub/r-minimal:4.6 AS r-builder
-
+FROM rhub/r-minimal:4.5 AS r-builder
 
 FROM python:3.12-alpine
 COPY --from=r-builder /usr/local/bin/installr /usr/local/bin/installr
 
+ARG VERSION=0.0.1
+ARG R_VERSION=4.5.2
+
+LABEL org.opencontainers.image.authors="marcio.nicolau@embrapa.br"
+LABEL org.opencontainers.image.source="https://github.com/marcionicolau/r-python-alpine"
+LABEL org.opencontainers.image.description="Python 3.12 with R $R_VERSION runtime, reticulate, rpy2 and installr"
+LABEL org.opencontainers.image.version=$VERSION
+
 SHELL [ "/bin/ash", "-c" ]
-RUN apk add --no-cache make gcc git libffi-dev py3-uv musl-dev R R-dev
+RUN apk add --no-cache make gcc git libffi-dev py3-uv musl-dev R
 
 
 WORKDIR /app
@@ -23,7 +30,7 @@ RUN installr -d reticulate \
     pandas \
     git+https://github.com/rpy2/rpy2.git \
     && apk del --purge -r \
-    gcc git libffi-dev musl-dev R-dev \
+    gcc git libffi-dev musl-dev \
     && rm -rf /var/cache/apk/* \
     && rm -rf /root/.cache
 

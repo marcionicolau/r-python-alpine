@@ -5,12 +5,16 @@ name: Docker Build and Publish
 # separate terms of service, privacy policy, and support
 # documentation.
 
-on: [release]
+on:
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"
 env:
   # Use docker.io for Docker Hub if empty
   REGISTRY: ghcr.io
   # github.repository as <account>/<repo>
   IMAGE_NAME: ${{ github.repository }}
+  R_VERSION: 4.5.2
 
 jobs:
   build-base-image:
@@ -64,7 +68,6 @@ jobs:
             latest=auto
           labels: |
             org.opencontainers.image.created={{commit_date 'YYYY-MM-DD HH:mm:ss' tz='America/Sao_Paulo'}}
-            org.opencontainers.image.description="Alpine Base Image with R 4.6.0 and Python 3.12"
             org.opencontainers.image.licenses="MIT"
             org.opencontainers.image.title="${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-base"
 
@@ -82,6 +85,9 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          build-args: |
+            VERSION=${{ github.ref_name }}
+            R_VERSION=${{ env.R_VERSION }}
 
       # Sign the resulting Docker image digest except on PRs.
       # This will only write to the public Rekor transparency log when the Docker
@@ -149,7 +155,6 @@ jobs:
             latest=auto
           labels: |
             org.opencontainers.image.created={{commit_date 'YYYY-MM-DD HH:mm:ss' tz='America/Sao_Paulo'}}
-            org.opencontainers.image.description="Alpine Packages Image with R 4.6.0 and Python 3.12"
             org.opencontainers.image.licenses="MIT"
             org.opencontainers.image.title="${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-packages"
 
@@ -167,6 +172,10 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          build-args: |
+            BASE_VERSION=${{ github.ref_name }}
+            VERSION=${{ github.ref_name }}
+            R_VERSION=${{ env.R_VERSION }}
 
       # Sign the resulting Docker image digest except on PRs.
       # This will only write to the public Rekor transparency log when the Docker
