@@ -1,3 +1,9 @@
+## v0.0.7 (2026-05-28)
+
+### 📌➕⬇️➖⬆️ Dependencies
+
+- Update base image to r-python-alpine-base:0.0.5 and bump version to 0.0.6
+
 ## v0.0.6 (2026-05-28)
 
 ### 🧹 chore
