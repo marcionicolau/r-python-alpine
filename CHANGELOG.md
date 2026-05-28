@@ -1,3 +1,9 @@
+## v0.0.11 (2026-05-28)
+
+### 🐛🚑️ Fixes
+
+- Remove 'v' prefix from base image version tag in packages build
+
 ## v0.0.10 (2026-05-28)
 
 ### 🐛🚑️ Fixes
