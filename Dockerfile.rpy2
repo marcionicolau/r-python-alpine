@@ -1,6 +1,6 @@
 FROM ghcr.io/marcionicolau/r-python-alpine-base:0.0.5
 
-ARG VERSION=0.0.6
+ARG VERSION=0.0.7
 
 LABEL version=$VERSION
 LABEL org.opencontainers.image.authors="marcio.nicolau@embrapa.br"
