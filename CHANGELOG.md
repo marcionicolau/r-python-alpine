@@ -1,3 +1,9 @@
+## v0.0.9 (2026-05-28)
+
+### 🐛🚑️ Fixes
+
+- Add R-dev to build dependencies and clean up after installation
+
 ## v0.0.8 (2026-05-28)
 
 ### 🔧🔨📦️ Configuration, Scripts, Packages
