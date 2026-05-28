@@ -1,3 +1,9 @@
+## v0.0.8 (2026-05-28)
+
+### 🔧🔨📦️ Configuration, Scripts, Packages
+
+- Improve Docker build configuration and image metadata
+
 ## v0.0.7 (2026-05-28)
 
 ### 📌➕⬇️➖⬆️ Dependencies
