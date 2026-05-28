@@ -1,3 +1,9 @@
+## v0.0.10 (2026-05-28)
+
+### 🐛🚑️ Fixes
+
+- Add wait step for base image availability before building packages image
+
 ## v0.0.9 (2026-05-28)
 
 ### 🐛🚑️ Fixes
